@@ -1,0 +1,17 @@
+{
+  "name": "andy-beacon",
+  "version": "1.0.0",
+  "description": "Mobile-first “space station” panel for QR visitors. Press **Activate Beacon** to light the siren and reveal the message.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jsdom": "^22.1.0"
+  }
+}
