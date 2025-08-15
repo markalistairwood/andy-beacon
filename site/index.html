@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" data-state="idle">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Church of Seeing Stars — Beacon</title>
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="panel" aria-labelledby="title">
+    <header class="panel__hdr">
+      <h1 id="title">The Church of Seeing Stars</h1>
+    </header>
+
+    <!-- Siren (CSS/SVG) -->
+    <section class="siren" aria-hidden="true">
+      <svg viewBox="0 0 160 120" class="siren__svg">
+        <defs>
+          <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#6f1c1c"/>
+            <stop offset="100%" stop-color="#2a0a0a"/>
+          </linearGradient>
+          <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(255,40,40,.9)"/>
+            <stop offset="100%" stop-color="rgba(255,40,40,0)"/>
+          </radialGradient>
+          <mask id="beamMask">
+            <rect width="160" height="120" fill="black"/>
+            <path id="beam" d="M80,10 L110,110 L50,110 Z" fill="white"/>
+          </mask>
+        </defs>
+        <!-- base -->
+        <rect x="25" y="100" width="110" height="10" rx="3" fill="#1b1f2a"/>
+        <!-- dome -->
+        <ellipse cx="80" cy="70" rx="45" ry="35" fill="url(#glass)" class="siren__dome"/>
+        <!-- rotating beam (masked) -->
+        <g class="siren__beam">
+          <rect x="0" y="0" width="160" height="120" fill="url(#glow)" mask="url(#beamMask)"/>
+        </g>
+        <!-- inner highlight -->
+        <ellipse cx="80" cy="55" rx="32" ry="12" fill="rgba(255,255,255,.12)"/>
+      </svg>
+    </section>
+
+    <!-- Display -->
+    <section class="display" role="status" aria-live="polite">
+      <div class="display__inner">
+        <p class="display__headline" id="headline"></p>
+        <p class="display__sub" id="sub"></p>
+      </div>
+    </section>
+
+    <!-- Button -->
+    <button id="beaconBtn" class="btn" aria-pressed="false">
+      Activate Beacon
+    </button>
+
+    <footer class="panel__ftr" aria-hidden="true">
+      <small>v1 · Works offline · Respectful of reduced motion</small>
+    </footer>
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
