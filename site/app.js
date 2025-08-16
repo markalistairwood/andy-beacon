@@ -22,6 +22,24 @@ document.addEventListener('DOMContentLoaded', () => {
     sub.style.clipPath = '';
   }
 
+  function playScanSound() {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const oscillator = ctx.createOscillator();
+      oscillator.type = 'sine';
+      oscillator.connect(ctx.destination);
+      const now = ctx.currentTime;
+      oscillator.frequency.setValueAtTime(800, now);
+      oscillator.frequency.linearRampToValueAtTime(400, now + 0.5);
+      oscillator.start();
+      oscillator.stop(now + 0.5);
+    } catch (e) {
+      // audio not supported or user gesture required
+    }
+  }
+
   function activate() {
     if (document.documentElement.dataset.state === 'active') return;
     document.documentElement.setAttribute('data-state', 'active');
@@ -30,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = true;
     headline.textContent = HEADLINE_TEXT;
     sub.textContent = SUB_TEXTS[subIndex];
+    playScanSound();
     setInterval(cycleSubText, 5000);
   }
 

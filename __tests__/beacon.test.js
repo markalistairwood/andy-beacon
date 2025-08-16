@@ -29,6 +29,39 @@ describe('beacon activation', () => {
     jest.useRealTimers();
   });
 
+  test('plays scan sound on activation', () => {
+    const window = setupDom();
+    const start = jest.fn();
+    const stop = jest.fn();
+    const connect = jest.fn();
+    const oscMock = {
+      type: '',
+      connect,
+      start,
+      stop,
+      frequency: {
+        setValueAtTime: jest.fn(),
+        linearRampToValueAtTime: jest.fn(),
+      },
+    };
+    const createOscillator = jest.fn().mockReturnValue(oscMock);
+    const AudioCtxMock = jest.fn().mockImplementation(() => ({
+      createOscillator,
+      destination: {},
+      currentTime: 0,
+    }));
+    window.AudioContext = AudioCtxMock;
+
+    const btn = window.document.getElementById('beaconBtn');
+    btn.dispatchEvent(new window.Event('click', { bubbles: true }));
+
+    expect(AudioCtxMock).toHaveBeenCalled();
+    expect(createOscillator).toHaveBeenCalled();
+    expect(connect).toHaveBeenCalled();
+    expect(start).toHaveBeenCalled();
+    expect(stop).toHaveBeenCalled();
+  });
+
   test('sub text cycles through messages', () => {
     jest.useFakeTimers();
     const window = setupDom();
