@@ -13,7 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function cycleSubText() {
     subIndex = (subIndex + 1) % SUB_TEXTS.length;
+    sub.style.animation = 'none';
     sub.textContent = SUB_TEXTS[subIndex];
+    sub.style.clipPath = 'inset(0% 100% 0% 0)';
+    // force reflow to allow animation restart
+    void sub.offsetWidth;
+    sub.style.animation = '';
+    sub.style.clipPath = '';
   }
 
   function activate() {
