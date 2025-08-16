@@ -13,6 +13,7 @@ describe('beacon activation', () => {
   }
 
   test('clicking Activate Beacon triggers active state', () => {
+    jest.useFakeTimers();
     const window = setupDom();
     const btn = window.document.getElementById('beaconBtn');
     btn.dispatchEvent(new window.Event('click', { bubbles: true }));
@@ -22,6 +23,34 @@ describe('beacon activation', () => {
     expect(btn.textContent).toBe('Activated');
     expect(btn.disabled).toBe(true);
     expect(window.document.getElementById('headline').textContent).toBe('Beacon Activated');
-    expect(window.document.getElementById('sub').textContent).toBe('This is Bowie to Warhol can you read me loud and clear man');
+    expect(window.document.getElementById('sub').textContent).toBe('This is Bowie to Andy do you read me loud and clear man?');
+
+    jest.clearAllTimers();
+    jest.useRealTimers();
+  });
+
+  test('sub text cycles through messages', () => {
+    jest.useFakeTimers();
+    const window = setupDom();
+    const btn = window.document.getElementById('beaconBtn');
+    btn.dispatchEvent(new window.Event('click', { bubbles: true }));
+
+    const sub = window.document.getElementById('sub');
+    expect(sub.textContent).toBe('This is Bowie to Andy do you read me loud and clear man?');
+
+    jest.advanceTimersByTime(5000);
+    expect(sub.textContent).toBe('How far out are you now?');
+
+    jest.advanceTimersByTime(5000);
+    expect(sub.textContent).toBe("That's pretty far out man");
+
+    jest.advanceTimersByTime(5000);
+    expect(sub.textContent).toBe('This is Bowie to Andy do you read me loud and clear man?');
+
+    jest.advanceTimersByTime(5000);
+    expect(sub.textContent).toBe('How far out are you now?');
+
+    jest.clearAllTimers();
+    jest.useRealTimers();
   });
 });
