@@ -79,7 +79,7 @@ body::before, body::after{
 .btn{
   width:100%; padding:16px 18px; border-radius:12px; border:1px solid #27324f;
   background:linear-gradient(180deg, #14224a, #0e1a3a);
-  color:#eaf2ff; font-weight:700; letter-spacing:.3px;
+  color:#eaf2ff; font-weight:700; letter-spacing:.3px; font-size:20px;
   box-shadow:0 6px 18px #0008, inset 0 1px 0 #ffffff22;
 }
 .btn:hover{filter:brightness(1.05)}
