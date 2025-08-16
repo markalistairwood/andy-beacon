@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const SUB_TEXTS = [
     'This is Bowie to Andy do you read me loud and clear man?',
     'How far out are you now?',
-    "That's pretty far out man?",
+    "That's pretty far out man",
   ];
   let subIndex = 0;
 
