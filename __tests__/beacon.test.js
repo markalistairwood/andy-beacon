@@ -42,7 +42,7 @@ describe('beacon activation', () => {
     expect(sub.textContent).toBe('How far out are you now?');
 
     jest.advanceTimersByTime(5000);
-    expect(sub.textContent).toBe("That's pretty far out man?");
+    expect(sub.textContent).toBe("That's pretty far out man");
 
     jest.advanceTimersByTime(5000);
     expect(sub.textContent).toBe('This is Bowie to Andy do you read me loud and clear man?');
